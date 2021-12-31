@@ -1,44 +1,30 @@
-package com.postalio.challenge;
+Part 2:
+-------
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.net.URLConnection;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
-import java.util.zip.ZipEntry;
-import java.util.zip.ZipFile;
-import java.util.zip.ZipInputStream;
+In this challenge, have your Java code download and unzip the following file http://www.sec.gov/dera/data/Public-EDGAR-log-file-data/2017/Qtr2/log20170630.zip. Then have the code extract the zip file. Read and parse any .CSV files contained in the zip file.
 
-public class ZipUnZipExample {
+Each row in the file represents a web request to a SEC website. There is a header row that describes the fields within the file. Process the data and calculate the following metrics:
 
-    public static void main(String[] args) throws IOException {
+- Unique IP addresses (note: the exact IP address is masked)
+- Summarize and count the 'code' field and provide a list of the codes found as well as how many times for each code (this is an HTTP error code)
+- Report the total 'size' transferred in bytes
 
-        String sURL = "http://www.sec.gov/dera/data/Public-EDGAR-log-file-data/2017/Qtr2/log20170630.zip";
-        URL url = new URL(sURL);
-        URLConnection connection = url.openConnection();  
-       
-        InputStream in = connection.getInputStream();
-        ZipInputStream zipIn = new ZipInputStream(in);
-                           
-       
-        // JSONObject json = Util.parseJson(response);
-        System.out.println("space");
-        try {
-            Files.copy( url.openStream(), Paths.get("."));
-        } catch (IOException e1) {
-            
-            e1.printStackTrace();
-        }
+Notes:
+- Please create a Maven pom.xml file for your project and the dependencies
+- You can use libraries as you feel necessary to accomplish this task
+- Once complete, commit the code to a public repo on your GitHub account
+
+ Extract Files
+  Found really nice example:
+  https://github.com/mkyong/core-java/blob/master/java-io/src/main/java/com/mkyong/io/howto/compress/ZipUnZipExample.java
+   *provides example for handling zip slip
+
+   public class ZipUnZipExample {
+
+    public static void main(String[] args) {
+
         Path source = Paths.get("http://www.sec.gov/dera/data/Public-EDGAR-log-file-data/2017/Qtr2/log20170630.zip");
-        Path target = Paths.get("/");
+        Path target = Paths.get("/home/mkyong/zip/");
 
         try {
 
@@ -50,6 +36,7 @@ public class ZipUnZipExample {
         }
 
     }
+
 
     public static void unzipFolder(Path source, Path target) throws IOException {
 

@@ -1,0 +1,24 @@
+Part 1:
+-------
+
+In this challenge, write an application in Java and use an HTTP GET method to retrieve information from Wikipedia.
+
+Query 'https://en.wikipedia.org/w/api.php?action=parse&section=0&prop=text&format=json&page=Cincinnati'; to get the topic Wikipedia article.
+
+Return the total number of times that the string Cincinnati appears in the article's text field.
+
+Note that the search is case-sensitive.
+
+The query response from the website is a JSON object described below:
+
+- A JSON object representing the article's parsed web page. It has following three fields:
+
+title: The article's title, as specified by the argument passed as topic.
+pageid: The article's Page ID.
+text: A JSON object that contains the Wikipedia article as an HMTL dump.
+
+Notes:
+- Please create a Maven pom.xml file for your project and the dependencies
+- You can use libraries as you feel necessary to accomplish this task
+- Create a Docker container that executes the final output of your application
+- Once complete, commit the code (with Dockerfile) to a public repo on your GitHub account
